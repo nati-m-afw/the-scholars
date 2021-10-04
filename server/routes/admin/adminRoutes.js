@@ -1,7 +1,7 @@
 // Importing Essentials
-const { application } = require("express");
-const express = require("express");
-const router = express.Router();
+// const { application } = require("express");
+let expressWs = require("express-ws")(require("express")).app;
+const router = expressWs.Router();
 
 // File System
 const fs = require("fs");
@@ -175,25 +175,11 @@ async function getContent(fileName) {
   var content = fs.readFileSync("./test.txt", "utf8");
   return content;
 }
-////////// * ANNOUNCEMENTS
+////////// * ANNOUNCEMENTS //////////////////////
 // Route to get Announcements
 router.get("/announcements", async (req, res) => {
   try {
-    // Get all announcements from DB
-    const allAnnouncements = await Announcement.find();
-
-    let response = [];
-
-    for (const announcementDB of allAnnouncements) {
-      let announcement = {
-        id: `${announcementDB._id}`,
-        title: announcementDB.title,
-        body: announcementDB.body,
-        date: announcementDB.date,
-      };
-      response.push(announcement);
-    }
-
+    var response = await getAnnouncements();
     res.status(200).send(response);
   } catch (e) {
     handleError(e);
@@ -286,4 +272,40 @@ router.delete("/announcements/:id", async (req, res) => {
     res.status(500).send("Sever Error");
   }
 });
+
+////////// * Announcements Stream /////////////////////////
+// router.ws("/stream/announcements", async (ws, _) => {
+//   var response = await getAnnouncements();
+//   ws.send(JSON.stringify(response));
+//   ws.on("message", (msg) => {
+//     ws.send(msg)
+//   })
+// });
+
+router.ws("/stream/test", (ws, _) => {
+  ws.on("message", (msg) => {
+    ws.send(msg);
+  });
+});
+
+
+async function getAnnouncements() {
+  // Get all announcements from DB
+  const allAnnouncements = await Announcement.find();
+
+  let response = [];
+
+  for (const announcementDB of allAnnouncements) {
+    let announcement = {
+      id: `${announcementDB._id}`,
+      title: announcementDB.title,
+      body: announcementDB.body,
+      date: announcementDB.date,
+    };
+    response.push(announcement);
+  };
+
+  return response;
+};
+
 module.exports = router;

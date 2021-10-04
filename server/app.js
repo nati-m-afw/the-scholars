@@ -12,6 +12,10 @@ const adminRoutes = require("./routes/admin/adminRoutes");
 // Creating express instance
 const app = express();
 
+// Creating express-ws websocket server instance
+const expressWs = require("express-ws")(app);
+
+
 app.use(express.static(__dirname + "/templates/assets/img"));
 // Body parser middleware
 app.use(express.json());

@@ -1,7 +1,8 @@
 // Importing Essentials
 // const { application } = require("express");
-let expressWs = require("express-ws")(require("express")).app;
-const router = expressWs.Router();
+let expressWs = require("express-ws")(require("express"));
+const app = expressWs.app;
+const router = app.Router();
 
 // File System
 const fs = require("fs");
@@ -219,6 +220,8 @@ router.post("/announcements", async (req, res) => {
 
     const announcement = await newAnnouncement.save();
 
+    sendUpdateToWSClients();    
+
     res.status(201).send({ announcementId: announcement._id });
   } catch (e) {
     console.log(e);
@@ -252,6 +255,8 @@ router.put("/announcements", async (req, res) => {
       await newAnnouncement.save();
     }
 
+    sendUpdateToWSClients();
+
     res.status(201).send({ id: `${id}` });
   } catch (e) {
     console.log(e);
@@ -266,6 +271,8 @@ router.delete("/announcements/:id", async (req, res) => {
 
     const newAnnouncement = await Announcement.deleteOne({ _id: id });
 
+    sendUpdateToWSClients();
+
     res.status(204).send("Delete Complete");
   } catch (e) {
     console.log(e);
@@ -274,13 +281,14 @@ router.delete("/announcements/:id", async (req, res) => {
 });
 
 ////////// * Announcements Stream /////////////////////////
-// router.ws("/stream/announcements", async (ws, _) => {
-//   var response = await getAnnouncements();
-//   ws.send(JSON.stringify(response));
-//   ws.on("message", (msg) => {
-//     ws.send(msg)
-//   })
-// });
+router.ws("/stream/announcements", async function (ws, _) {
+  // Push client into array
+  connections.push(ws);
+
+  // Send announcements when new connection is established
+  var response = await getAnnouncements();
+  ws.send(JSON.stringify(response));
+});
 
 router.ws("/stream/test", (ws, _) => {
   ws.on("message", (msg) => {
@@ -307,5 +315,17 @@ async function getAnnouncements() {
 
   return response;
 };
+
+async function sendUpdateToWSClients() {
+  // Get updated annoucements
+  var updatedAnnouncements = await getAnnouncements();
+
+  // Broadcast updated annoucements to all clients connected to the web socket server on announcements route
+  connections.forEach((connection) => { 
+    connection.send(JSON.stringify(updatedAnnouncements));
+  });
+}
+
+var connections = [];
 
 module.exports = router;

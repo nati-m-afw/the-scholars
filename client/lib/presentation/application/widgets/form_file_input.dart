@@ -44,7 +44,7 @@ class FileForm extends StatelessWidget {
                         final pickedItem =
                             await FilePicker.platform.pickFiles();
                         if (pickedItem != null) {
-                          final String filePath = pickedItem.files.single.path;
+                          final String filePath = pickedItem.files.single.path??"";
 
                           if (type == "S") {
                             BlocProvider.of<ApplicationBloc>(context).add(

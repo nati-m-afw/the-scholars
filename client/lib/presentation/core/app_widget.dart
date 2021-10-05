@@ -1,6 +1,5 @@
 import 'package:client/application/auth/auth_bloc.dart';
 import 'package:client/injectable.dart';
-import 'package:client/presentation/auth/sign_in_page.dart';
 import 'package:client/presentation/routes/router.dart';
 import 'package:client/presentation/splash/splash_page.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +35,7 @@ class AppWidget extends StatelessWidget {
                   (states) => Theme.of(context).primaryColor),
             )),
         routes: _appRouter.allRoutes,
-        home: SignInPage(),
+        home: SplashPage(),
       ),
     );
   }

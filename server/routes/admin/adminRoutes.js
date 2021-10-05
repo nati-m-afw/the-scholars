@@ -284,7 +284,7 @@ router.delete("/announcements/:id", async (req, res) => {
 router.ws("/stream/announcements", async function (ws, _) {
   // Push client into array
   connections.push(ws);
-
+  console.log("Client Connected");
   // Send announcements when new connection is established
   var response = await getAnnouncements();
   ws.send(JSON.stringify(response));

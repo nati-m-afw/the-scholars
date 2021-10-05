@@ -35,9 +35,11 @@ dependencies:
   liquid_pull_to_refresh: ^3.0.0
   path: ^1.8.0
   path_provider: ^2.0.3
+  rxdart: ^0.27.2
   shared_preferences: ^2.0.7
   sqflite: ^2.0.0+4
   uuid: ^3.0.4
+  web_socket_channel: ^2.1.0
 
 dev_dependencies:
   bloc_test: ^8.1.0

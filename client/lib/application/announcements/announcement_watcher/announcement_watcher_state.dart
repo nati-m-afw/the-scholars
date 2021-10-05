@@ -8,4 +8,5 @@ abstract class AnnouncementWatcherState with _$AnnouncementWatcherState {
       List<Announcement> annoucements) = _LoadSuccess;
   const factory AnnouncementWatcherState.loadFailure(
       AnnouncementFailure announcementFailure) = _LoadFailure;
+  const factory AnnouncementWatcherState.dataChange() = _DataChange;
 }

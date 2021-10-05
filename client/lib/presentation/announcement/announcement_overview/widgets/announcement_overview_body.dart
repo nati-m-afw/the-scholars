@@ -12,43 +12,46 @@ class AnnouncementsOverviewBody extends StatelessWidget {
 
     return BlocBuilder<AnnouncementWatcherBloc, AnnouncementWatcherState>(
         builder: (context, state) => state.map(
-            initial: (_) => Container(),
-            loadInProgress: (_) =>
-                const Center(child: CircularProgressIndicator()),
-            loadSuccess: (state) {
-              if (state.annoucements.isEmpty) {
-                return const Text("No announcements");
-              }
+              initial: (_) => Container(),
+              loadInProgress: (_) =>
+                  const Center(child: CircularProgressIndicator()),
+              loadSuccess: (state) {
+                if (state.annoucements.isEmpty) {
+                  return const Text("No announcements");
+                }
 
-              return ListView.builder(
-                  itemCount: state.annoucements.length,
-                  itemBuilder: (_, index) => GestureDetector(
-                        onTap: () => Navigator.pushNamed(
-                            context, "/annoucement-form",
-                            arguments: state.annoucements[index]),
-                        onLongPress: () => _showDeletionDialog(
-                            context, actorBloc, state.annoucements[index]),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Card(
-                            color: Colors.grey,
-                            child: Row(
-                              // ignore: prefer_const_literals_to_create_immutables
-                              children: [
-                                Text(state.annoucements[index].title
-                                    .getOrCrash()),
-                                const Spacer(),
-                                Text(state.annoucements[index].date
-                                    .getOrCrash()),
-                                const Spacer(),
-                              ],
+                return ListView.builder(
+                    itemCount: state.annoucements.length,
+                    itemBuilder: (_, index) => GestureDetector(
+                          onTap: () => Navigator.pushNamed(
+                              context, "/annoucement-form",
+                              arguments: state.annoucements[index]),
+                          onLongPress: () => _showDeletionDialog(
+                              context, actorBloc, state.annoucements[index]),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Card(
+                              color: Colors.grey,
+                              child: Row(
+                                // ignore: prefer_const_literals_to_create_immutables
+                                children: [
+                                  Text(state.annoucements[index].title
+                                      .getOrCrash()),
+                                  const Spacer(),
+                                  Text(state.annoucements[index].date
+                                      .getOrCrash()),
+                                  const Spacer(),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ));
-            },
-            loadFailure: (state) =>
-                Text(state.announcementFailure.toString())));
+                        ));
+              },
+              loadFailure: (state) =>
+                  Text(state.announcementFailure.toString()),
+              dataChange: (state) =>
+                  const Center(child: CircularProgressIndicator()),
+            ));
   }
 
   void _showDeletionDialog(BuildContext context,

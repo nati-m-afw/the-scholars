@@ -245,7 +245,7 @@ router.put("/announcements", async (req, res) => {
     };
 
     let id;
-    console.log(bodyData.id);
+    
     if (bodyData.id != "") {
       id = bodyData.id;
       await Announcement.findByIdAndUpdate(id, updateValue);
@@ -257,7 +257,7 @@ router.put("/announcements", async (req, res) => {
 
     sendUpdateToWSClients();
 
-    res.status(201).send({ id: `${id}` });
+    res.status(201).send({ announcementId: `${id}` });
   } catch (e) {
     console.log(e);
     res.status(500).send("Sever Error");

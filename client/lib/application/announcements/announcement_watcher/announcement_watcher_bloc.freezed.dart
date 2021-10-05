@@ -19,6 +19,13 @@ class _$AnnouncementWatcherEventTearOff {
   _GetAllStarted getAllStarted() {
     return const _GetAllStarted();
   }
+
+  _AnnouncementsReceived announcementsReceived(
+      Either<AnnouncementFailure, List<Announcement>> failureOrSuccess) {
+    return _AnnouncementsReceived(
+      failureOrSuccess,
+    );
+  }
 }
 
 /// @nodoc
@@ -29,22 +36,31 @@ mixin _$AnnouncementWatcherEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getAllStarted,
+    required TResult Function(
+            Either<AnnouncementFailure, List<Announcement>> failureOrSuccess)
+        announcementsReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getAllStarted,
+    TResult Function(
+            Either<AnnouncementFailure, List<Announcement>> failureOrSuccess)?
+        announcementsReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetAllStarted value) getAllStarted,
+    required TResult Function(_AnnouncementsReceived value)
+        announcementsReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetAllStarted value)? getAllStarted,
+    TResult Function(_AnnouncementsReceived value)? announcementsReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -108,6 +124,9 @@ class _$_GetAllStarted implements _GetAllStarted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getAllStarted,
+    required TResult Function(
+            Either<AnnouncementFailure, List<Announcement>> failureOrSuccess)
+        announcementsReceived,
   }) {
     return getAllStarted();
   }
@@ -116,6 +135,9 @@ class _$_GetAllStarted implements _GetAllStarted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getAllStarted,
+    TResult Function(
+            Either<AnnouncementFailure, List<Announcement>> failureOrSuccess)?
+        announcementsReceived,
     required TResult orElse(),
   }) {
     if (getAllStarted != null) {
@@ -128,6 +150,8 @@ class _$_GetAllStarted implements _GetAllStarted {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetAllStarted value) getAllStarted,
+    required TResult Function(_AnnouncementsReceived value)
+        announcementsReceived,
   }) {
     return getAllStarted(this);
   }
@@ -136,6 +160,7 @@ class _$_GetAllStarted implements _GetAllStarted {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetAllStarted value)? getAllStarted,
+    TResult Function(_AnnouncementsReceived value)? announcementsReceived,
     required TResult orElse(),
   }) {
     if (getAllStarted != null) {
@@ -147,6 +172,133 @@ class _$_GetAllStarted implements _GetAllStarted {
 
 abstract class _GetAllStarted implements AnnouncementWatcherEvent {
   const factory _GetAllStarted() = _$_GetAllStarted;
+}
+
+/// @nodoc
+abstract class _$AnnouncementsReceivedCopyWith<$Res> {
+  factory _$AnnouncementsReceivedCopyWith(_AnnouncementsReceived value,
+          $Res Function(_AnnouncementsReceived) then) =
+      __$AnnouncementsReceivedCopyWithImpl<$Res>;
+  $Res call({Either<AnnouncementFailure, List<Announcement>> failureOrSuccess});
+}
+
+/// @nodoc
+class __$AnnouncementsReceivedCopyWithImpl<$Res>
+    extends _$AnnouncementWatcherEventCopyWithImpl<$Res>
+    implements _$AnnouncementsReceivedCopyWith<$Res> {
+  __$AnnouncementsReceivedCopyWithImpl(_AnnouncementsReceived _value,
+      $Res Function(_AnnouncementsReceived) _then)
+      : super(_value, (v) => _then(v as _AnnouncementsReceived));
+
+  @override
+  _AnnouncementsReceived get _value => super._value as _AnnouncementsReceived;
+
+  @override
+  $Res call({
+    Object? failureOrSuccess = freezed,
+  }) {
+    return _then(_AnnouncementsReceived(
+      failureOrSuccess == freezed
+          ? _value.failureOrSuccess
+          : failureOrSuccess // ignore: cast_nullable_to_non_nullable
+              as Either<AnnouncementFailure, List<Announcement>>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_AnnouncementsReceived implements _AnnouncementsReceived {
+  const _$_AnnouncementsReceived(this.failureOrSuccess);
+
+  @override
+  final Either<AnnouncementFailure, List<Announcement>> failureOrSuccess;
+
+  @override
+  String toString() {
+    return 'AnnouncementWatcherEvent.announcementsReceived(failureOrSuccess: $failureOrSuccess)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _AnnouncementsReceived &&
+            (identical(other.failureOrSuccess, failureOrSuccess) ||
+                const DeepCollectionEquality()
+                    .equals(other.failureOrSuccess, failureOrSuccess)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(failureOrSuccess);
+
+  @JsonKey(ignore: true)
+  @override
+  _$AnnouncementsReceivedCopyWith<_AnnouncementsReceived> get copyWith =>
+      __$AnnouncementsReceivedCopyWithImpl<_AnnouncementsReceived>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getAllStarted,
+    required TResult Function(
+            Either<AnnouncementFailure, List<Announcement>> failureOrSuccess)
+        announcementsReceived,
+  }) {
+    return announcementsReceived(failureOrSuccess);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getAllStarted,
+    TResult Function(
+            Either<AnnouncementFailure, List<Announcement>> failureOrSuccess)?
+        announcementsReceived,
+    required TResult orElse(),
+  }) {
+    if (announcementsReceived != null) {
+      return announcementsReceived(failureOrSuccess);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetAllStarted value) getAllStarted,
+    required TResult Function(_AnnouncementsReceived value)
+        announcementsReceived,
+  }) {
+    return announcementsReceived(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetAllStarted value)? getAllStarted,
+    TResult Function(_AnnouncementsReceived value)? announcementsReceived,
+    required TResult orElse(),
+  }) {
+    if (announcementsReceived != null) {
+      return announcementsReceived(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AnnouncementsReceived implements AnnouncementWatcherEvent {
+  const factory _AnnouncementsReceived(
+          Either<AnnouncementFailure, List<Announcement>> failureOrSuccess) =
+      _$_AnnouncementsReceived;
+
+  Either<AnnouncementFailure, List<Announcement>> get failureOrSuccess =>
+      throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$AnnouncementsReceivedCopyWith<_AnnouncementsReceived> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -172,6 +324,10 @@ class _$AnnouncementWatcherStateTearOff {
       announcementFailure,
     );
   }
+
+  _DataChange dataChange() {
+    return const _DataChange();
+  }
 }
 
 /// @nodoc
@@ -186,6 +342,7 @@ mixin _$AnnouncementWatcherState {
     required TResult Function(List<Announcement> annoucements) loadSuccess,
     required TResult Function(AnnouncementFailure announcementFailure)
         loadFailure,
+    required TResult Function() dataChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -194,6 +351,7 @@ mixin _$AnnouncementWatcherState {
     TResult Function()? loadInProgress,
     TResult Function(List<Announcement> annoucements)? loadSuccess,
     TResult Function(AnnouncementFailure announcementFailure)? loadFailure,
+    TResult Function()? dataChange,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -203,6 +361,7 @@ mixin _$AnnouncementWatcherState {
     required TResult Function(_LoadInProgress value) loadInProgress,
     required TResult Function(_LoadSuccess value) loadSuccess,
     required TResult Function(_LoadFailure value) loadFailure,
+    required TResult Function(_DataChange value) dataChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -211,6 +370,7 @@ mixin _$AnnouncementWatcherState {
     TResult Function(_LoadInProgress value)? loadInProgress,
     TResult Function(_LoadSuccess value)? loadSuccess,
     TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_DataChange value)? dataChange,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -276,6 +436,7 @@ class _$_Initial implements _Initial {
     required TResult Function(List<Announcement> annoucements) loadSuccess,
     required TResult Function(AnnouncementFailure announcementFailure)
         loadFailure,
+    required TResult Function() dataChange,
   }) {
     return initial();
   }
@@ -287,6 +448,7 @@ class _$_Initial implements _Initial {
     TResult Function()? loadInProgress,
     TResult Function(List<Announcement> annoucements)? loadSuccess,
     TResult Function(AnnouncementFailure announcementFailure)? loadFailure,
+    TResult Function()? dataChange,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -302,6 +464,7 @@ class _$_Initial implements _Initial {
     required TResult Function(_LoadInProgress value) loadInProgress,
     required TResult Function(_LoadSuccess value) loadSuccess,
     required TResult Function(_LoadFailure value) loadFailure,
+    required TResult Function(_DataChange value) dataChange,
   }) {
     return initial(this);
   }
@@ -313,6 +476,7 @@ class _$_Initial implements _Initial {
     TResult Function(_LoadInProgress value)? loadInProgress,
     TResult Function(_LoadSuccess value)? loadSuccess,
     TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_DataChange value)? dataChange,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -371,6 +535,7 @@ class _$_LoadInProgress implements _LoadInProgress {
     required TResult Function(List<Announcement> annoucements) loadSuccess,
     required TResult Function(AnnouncementFailure announcementFailure)
         loadFailure,
+    required TResult Function() dataChange,
   }) {
     return loadInProgress();
   }
@@ -382,6 +547,7 @@ class _$_LoadInProgress implements _LoadInProgress {
     TResult Function()? loadInProgress,
     TResult Function(List<Announcement> annoucements)? loadSuccess,
     TResult Function(AnnouncementFailure announcementFailure)? loadFailure,
+    TResult Function()? dataChange,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
@@ -397,6 +563,7 @@ class _$_LoadInProgress implements _LoadInProgress {
     required TResult Function(_LoadInProgress value) loadInProgress,
     required TResult Function(_LoadSuccess value) loadSuccess,
     required TResult Function(_LoadFailure value) loadFailure,
+    required TResult Function(_DataChange value) dataChange,
   }) {
     return loadInProgress(this);
   }
@@ -408,6 +575,7 @@ class _$_LoadInProgress implements _LoadInProgress {
     TResult Function(_LoadInProgress value)? loadInProgress,
     TResult Function(_LoadSuccess value)? loadSuccess,
     TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_DataChange value)? dataChange,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
@@ -492,6 +660,7 @@ class _$_LoadSuccess implements _LoadSuccess {
     required TResult Function(List<Announcement> annoucements) loadSuccess,
     required TResult Function(AnnouncementFailure announcementFailure)
         loadFailure,
+    required TResult Function() dataChange,
   }) {
     return loadSuccess(annoucements);
   }
@@ -503,6 +672,7 @@ class _$_LoadSuccess implements _LoadSuccess {
     TResult Function()? loadInProgress,
     TResult Function(List<Announcement> annoucements)? loadSuccess,
     TResult Function(AnnouncementFailure announcementFailure)? loadFailure,
+    TResult Function()? dataChange,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
@@ -518,6 +688,7 @@ class _$_LoadSuccess implements _LoadSuccess {
     required TResult Function(_LoadInProgress value) loadInProgress,
     required TResult Function(_LoadSuccess value) loadSuccess,
     required TResult Function(_LoadFailure value) loadFailure,
+    required TResult Function(_DataChange value) dataChange,
   }) {
     return loadSuccess(this);
   }
@@ -529,6 +700,7 @@ class _$_LoadSuccess implements _LoadSuccess {
     TResult Function(_LoadInProgress value)? loadInProgress,
     TResult Function(_LoadSuccess value)? loadSuccess,
     TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_DataChange value)? dataChange,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
@@ -629,6 +801,7 @@ class _$_LoadFailure implements _LoadFailure {
     required TResult Function(List<Announcement> annoucements) loadSuccess,
     required TResult Function(AnnouncementFailure announcementFailure)
         loadFailure,
+    required TResult Function() dataChange,
   }) {
     return loadFailure(announcementFailure);
   }
@@ -640,6 +813,7 @@ class _$_LoadFailure implements _LoadFailure {
     TResult Function()? loadInProgress,
     TResult Function(List<Announcement> annoucements)? loadSuccess,
     TResult Function(AnnouncementFailure announcementFailure)? loadFailure,
+    TResult Function()? dataChange,
     required TResult orElse(),
   }) {
     if (loadFailure != null) {
@@ -655,6 +829,7 @@ class _$_LoadFailure implements _LoadFailure {
     required TResult Function(_LoadInProgress value) loadInProgress,
     required TResult Function(_LoadSuccess value) loadSuccess,
     required TResult Function(_LoadFailure value) loadFailure,
+    required TResult Function(_DataChange value) dataChange,
   }) {
     return loadFailure(this);
   }
@@ -666,6 +841,7 @@ class _$_LoadFailure implements _LoadFailure {
     TResult Function(_LoadInProgress value)? loadInProgress,
     TResult Function(_LoadSuccess value)? loadSuccess,
     TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_DataChange value)? dataChange,
     required TResult orElse(),
   }) {
     if (loadFailure != null) {
@@ -684,4 +860,103 @@ abstract class _LoadFailure implements AnnouncementWatcherState {
   @JsonKey(ignore: true)
   _$LoadFailureCopyWith<_LoadFailure> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$DataChangeCopyWith<$Res> {
+  factory _$DataChangeCopyWith(
+          _DataChange value, $Res Function(_DataChange) then) =
+      __$DataChangeCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$DataChangeCopyWithImpl<$Res>
+    extends _$AnnouncementWatcherStateCopyWithImpl<$Res>
+    implements _$DataChangeCopyWith<$Res> {
+  __$DataChangeCopyWithImpl(
+      _DataChange _value, $Res Function(_DataChange) _then)
+      : super(_value, (v) => _then(v as _DataChange));
+
+  @override
+  _DataChange get _value => super._value as _DataChange;
+}
+
+/// @nodoc
+
+class _$_DataChange implements _DataChange {
+  const _$_DataChange();
+
+  @override
+  String toString() {
+    return 'AnnouncementWatcherState.dataChange()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _DataChange);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loadInProgress,
+    required TResult Function(List<Announcement> annoucements) loadSuccess,
+    required TResult Function(AnnouncementFailure announcementFailure)
+        loadFailure,
+    required TResult Function() dataChange,
+  }) {
+    return dataChange();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function(List<Announcement> annoucements)? loadSuccess,
+    TResult Function(AnnouncementFailure announcementFailure)? loadFailure,
+    TResult Function()? dataChange,
+    required TResult orElse(),
+  }) {
+    if (dataChange != null) {
+      return dataChange();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_LoadSuccess value) loadSuccess,
+    required TResult Function(_LoadFailure value) loadFailure,
+    required TResult Function(_DataChange value) dataChange,
+  }) {
+    return dataChange(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_DataChange value)? dataChange,
+    required TResult orElse(),
+  }) {
+    if (dataChange != null) {
+      return dataChange(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DataChange implements AnnouncementWatcherState {
+  const factory _DataChange() = _$_DataChange;
 }

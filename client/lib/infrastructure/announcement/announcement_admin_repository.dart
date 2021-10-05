@@ -29,12 +29,13 @@ class AnnoncementRepository implements IAnnouncementRepository {
   Stream<Either<AnnouncementFailure, List<Announcement>>>
       getAnnouncements() {
     final Uri url = Uri.parse("ws://localhost:3000/admin/stream/announcements");
-    final List<Announcement> announcements = [];
 
     try {
       final channel = WebSocketChannel.connect(url);
       
       return channel.stream.flatMap((event) {
+        final List<Announcement> announcements = [];
+
         final List announcementsJson = jsonDecode(event as String) as List;
 
         for (final announcementJson in announcementsJson) {
@@ -64,7 +65,7 @@ class AnnoncementRepository implements IAnnouncementRepository {
     final outgoingJson = announcementDto.toJson();
 
     try {
-      final response = await client!.post(url, body: outgoingJson);
+      final response = await client!.put(url, body: outgoingJson);
 
       if (response.statusCode == 201) {
         final idMap = jsonDecode(response.body) as Map;
